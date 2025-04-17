@@ -1,0 +1,8 @@
+export const Colours = {
+	TEXT_NORMAL: '#11181C',
+	PRIMARY: '#007DFC',
+	BACKGROUND_COLOUR: '#FFF',
+	TEXT_LIGHT: '#F1F1F1',
+	LOGO_RED: '#FC3441',
+	TEXT_GRAY: '#C0C0C0',
+};
