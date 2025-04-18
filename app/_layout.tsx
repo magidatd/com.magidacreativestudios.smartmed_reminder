@@ -22,7 +22,10 @@ export default function RootLayout() {
 				useSuspense
 			>
 				<StatusBar style='auto' />
-				<Stack screenOptions={{ headerShown: false }}></Stack>
+				<Stack screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
+					<Stack.Screen name='(tabs)' />
+					<Stack.Screen name='onboarding' />
+				</Stack>
 			</SQLiteProvider>
 		</Suspense>
 	);
