@@ -7,6 +7,7 @@ import {
 	SafeAreaView,
 	KeyboardAvoidingView,
 	ScrollView,
+	Platform,
 } from 'react-native';
 import React from 'react';
 import { Text as DynamicText } from 'expo-dynamic-fonts';
@@ -19,7 +20,10 @@ export default function CreateAccount() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<KeyboardAvoidingView>
+			<KeyboardAvoidingView
+				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+				style={{ flex: 1 }}
+			>
 				<ScrollView>
 					<View style={styles.containerBackButton}>
 						<TouchableOpacity style={styles.backButton}>
@@ -47,6 +51,11 @@ export default function CreateAccount() {
 								<TextInput
 									placeholder='Email'
 									style={styles.input}
+									autoFocus={true}
+									autoCapitalize='none'
+									keyboardType='email-address'
+									autoComplete='email'
+									autoCorrect={false}
 								/>
 							</View>
 							<TouchableOpacity

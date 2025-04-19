@@ -7,6 +7,7 @@ import {
 	SafeAreaView,
 	KeyboardAvoidingView,
 	ScrollView,
+	Platform,
 } from 'react-native';
 import React, { useState } from 'react';
 import { Text as DynamicText } from 'expo-dynamic-fonts';
@@ -24,7 +25,10 @@ export default function Signin() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<KeyboardAvoidingView style={{ flex: 1 }}>
+			<KeyboardAvoidingView
+				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+				style={{ flex: 1 }}
+			>
 				<ScrollView>
 					<View style={styles.containerBackButton}>
 						<TouchableOpacity style={styles.backButton}>
@@ -52,6 +56,11 @@ export default function Signin() {
 								<TextInput
 									placeholder='Email'
 									style={styles.input}
+									autoFocus={true}
+									autoCapitalize='none'
+									keyboardType='email-address'
+									autoComplete='email'
+									autoCorrect={false}
 								/>
 							</View>
 							<View style={styles.inputContainer}>
@@ -63,6 +72,7 @@ export default function Signin() {
 									placeholder='Password'
 									style={styles.input}
 									secureTextEntry={!showPassword}
+									autoCapitalize='none'
 								/>
 								<TouchableOpacity onPress={toggleShowPassword}>
 									{showPassword ? (

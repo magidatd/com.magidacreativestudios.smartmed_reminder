@@ -7,6 +7,7 @@ import {
 	KeyboardAvoidingView,
 	SafeAreaView,
 	ScrollView,
+	Platform,
 } from 'react-native';
 import React, { useState } from 'react';
 import { Text as DynamicText } from 'expo-dynamic-fonts';
@@ -29,7 +30,10 @@ export default function CreateAccountPassword() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<KeyboardAvoidingView style={{ flex: 1 }}>
+			<KeyboardAvoidingView
+				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+				style={{ flex: 1 }}
+			>
 				<ScrollView>
 					<View style={styles.containerBackButton}>
 						<TouchableOpacity
@@ -61,6 +65,8 @@ export default function CreateAccountPassword() {
 									placeholder='Password'
 									style={styles.input}
 									secureTextEntry={!showPassword}
+									autoFocus={true}
+									autoCapitalize='none'
 								/>
 								<TouchableOpacity onPress={toggleShowPassword}>
 									{showPassword ? (

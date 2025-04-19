@@ -45,7 +45,7 @@ export default function CreateAccountSuccess() {
 						style={styles.continueButton}
 						onPress={() => router.replace('/login/create-account-password')}
 					>
-						<Text style={styles.buttonText}>Create account</Text>
+						<Text style={styles.buttonText}>Continue</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
