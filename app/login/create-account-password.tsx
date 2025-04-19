@@ -1,4 +1,13 @@
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import {
+	View,
+	Text,
+	TouchableOpacity,
+	TextInput,
+	StyleSheet,
+	KeyboardAvoidingView,
+	SafeAreaView,
+	ScrollView,
+} from 'react-native';
 import React, { useState } from 'react';
 import { Text as DynamicText } from 'expo-dynamic-fonts';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,85 +28,91 @@ export default function CreateAccountPassword() {
 	};
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.containerBackButton}>
-				<TouchableOpacity
-					style={styles.backButton}
-					onPress={() => router.replace('/login/create-account')}
-				>
-					<Ionicons
-						name='chevron-back-outline'
-						size={24}
-						color={Colours.PRIMARY_DARK}
-					/>
-				</TouchableOpacity>
-			</View>
-			<View style={styles.innerSection}>
-				<View style={styles.headerContainer}>
-					<DynamicText style={styles.headerText}>Create Account</DynamicText>
-					<DynamicText style={styles.subHeaderText}>Fill in information below to create your account.</DynamicText>
-				</View>
+		<SafeAreaView style={styles.container}>
+			<KeyboardAvoidingView style={{ flex: 1 }}>
+				<ScrollView>
+					<View style={styles.containerBackButton}>
+						<TouchableOpacity
+							style={styles.backButton}
+							onPress={() => router.replace('/login/create-account')}
+						>
+							<Ionicons
+								name='chevron-back-outline'
+								size={24}
+								color={Colours.PRIMARY_DARK}
+							/>
+						</TouchableOpacity>
+					</View>
+					<View style={styles.innerSection}>
+						<View style={styles.headerContainer}>
+							<DynamicText style={styles.headerText}>Create Account</DynamicText>
+							<DynamicText style={styles.subHeaderText}>
+								Fill in information below to create your account.
+							</DynamicText>
+						</View>
 
-				<View style={styles.card}>
-					<View style={styles.inputContainer}>
-						<Ionicons
-							name='lock-closed-outline'
-							size={24}
-						/>
-						<TextInput
-							placeholder='Password'
-							style={styles.input}
-							secureTextEntry={!showPassword}
-						/>
-						<TouchableOpacity onPress={toggleShowPassword}>
-							{showPassword ? (
+						<View style={styles.card}>
+							<View style={styles.inputContainer}>
 								<Ionicons
-									name='eye-outline'
+									name='lock-closed-outline'
 									size={24}
 								/>
-							) : (
-								<Ionicons
-									name='eye-off-outline'
-									size={24}
-									color='black'
+								<TextInput
+									placeholder='Password'
+									style={styles.input}
+									secureTextEntry={!showPassword}
 								/>
-							)}
-						</TouchableOpacity>
+								<TouchableOpacity onPress={toggleShowPassword}>
+									{showPassword ? (
+										<Ionicons
+											name='eye-outline'
+											size={24}
+										/>
+									) : (
+										<Ionicons
+											name='eye-off-outline'
+											size={24}
+											color='black'
+										/>
+									)}
+								</TouchableOpacity>
+							</View>
+							<View style={styles.inputContainer}>
+								<Ionicons
+									name='lock-closed-outline'
+									size={24}
+								/>
+								<TextInput
+									placeholder='Password'
+									style={styles.input}
+									secureTextEntry={!showPasswordConfirm}
+								/>
+								<TouchableOpacity onPress={toggleShowPasswordConfirm}>
+									{showPasswordConfirm ? (
+										<Ionicons
+											name='eye-outline'
+											size={24}
+										/>
+									) : (
+										<Ionicons
+											name='eye-off-outline'
+											size={24}
+											color='black'
+										/>
+									)}
+								</TouchableOpacity>
+							</View>
+							<TouchableOpacity
+								style={styles.continueButton}
+								onPress={() => router.replace('/login/create-account-success')}
+							>
+								<Text style={styles.buttonText}>Create account</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
-					<View style={styles.inputContainer}>
-						<Ionicons
-							name='lock-closed-outline'
-							size={24}
-						/>
-						<TextInput
-							placeholder='Password'
-							style={styles.input}
-							secureTextEntry={!showPasswordConfirm}
-						/>
-						<TouchableOpacity onPress={toggleShowPasswordConfirm}>
-							{showPasswordConfirm ? (
-								<Ionicons
-									name='eye-outline'
-									size={24}
-								/>
-							) : (
-								<Ionicons
-									name='eye-off-outline'
-									size={24}
-									color='black'
-								/>
-							)}
-						</TouchableOpacity>
-					</View>
-					<TouchableOpacity
-						style={styles.continueButton}
-						onPress={() => router.replace('/login/create-account-success')}
-					>
-						<Text style={styles.buttonText}>Create account</Text>
-					</TouchableOpacity>
-				</View>
-			</View>
-		</View>
+				</ScrollView>
+			</KeyboardAvoidingView>
+		</SafeAreaView>
 	);
 }
 

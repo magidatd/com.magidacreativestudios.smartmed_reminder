@@ -1,4 +1,13 @@
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import {
+	View,
+	Text,
+	TouchableOpacity,
+	TextInput,
+	StyleSheet,
+	SafeAreaView,
+	KeyboardAvoidingView,
+	ScrollView,
+} from 'react-native';
 import React from 'react';
 import { Text as DynamicText } from 'expo-dynamic-fonts';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,62 +18,68 @@ export default function CreateAccount() {
 	const router = useRouter();
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.containerBackButton}>
-				<TouchableOpacity style={styles.backButton}>
-					<Ionicons
-						name='chevron-back-outline'
-						size={24}
-						color={Colours.PRIMARY_DARK}
-					/>
-				</TouchableOpacity>
-			</View>
-			<View style={styles.innerSection}>
-				<View style={styles.headerContainer}>
-					<DynamicText style={styles.headerText}>Create Account</DynamicText>
-					<DynamicText style={styles.subHeaderText}>Fill in information below to create your account.</DynamicText>
-				</View>
-
-				<View style={styles.card}>
-					<View style={styles.inputContainer}>
-						<Ionicons
-							name='mail-outline'
-							size={24}
-						/>
-						<TextInput
-							placeholder='Email'
-							style={styles.input}
-						/>
+		<SafeAreaView style={styles.container}>
+			<KeyboardAvoidingView>
+				<ScrollView>
+					<View style={styles.containerBackButton}>
+						<TouchableOpacity style={styles.backButton}>
+							<Ionicons
+								name='chevron-back-outline'
+								size={24}
+								color={Colours.PRIMARY_DARK}
+							/>
+						</TouchableOpacity>
 					</View>
-					<TouchableOpacity
-						style={styles.continueButton}
-						onPress={() => router.replace('/login/create-account-password')}
-					>
-						<Text style={styles.buttonText}>Continue</Text>
-					</TouchableOpacity>
-				</View>
-				<DynamicText style={styles.textSmall}>or</DynamicText>
-				<View style={styles.card}>
-					<TouchableOpacity style={styles.brandButton}>
-						<Ionicons
-							name='logo-google'
-							size={24}
-							color='black'
-							style={styles.icon}
-						/>
-						<Text style={styles.buttonTextBrand}>Continue with Google</Text>
-					</TouchableOpacity>
-				</View>
-			</View>
+					<View style={styles.innerSection}>
+						<View style={styles.headerContainer}>
+							<DynamicText style={styles.headerText}>Create Account</DynamicText>
+							<DynamicText style={styles.subHeaderText}>
+								Fill in information below to create your account.
+							</DynamicText>
+						</View>
 
-			<TouchableOpacity
-				style={styles.textContainer}
-				onPress={() => router.replace('/login/signin')}
-			>
-				<DynamicText style={styles.textHaveAccount}>Already have an account? </DynamicText>
-				<DynamicText style={styles.textSignIn}>Sign in</DynamicText>
-			</TouchableOpacity>
-		</View>
+						<View style={styles.card}>
+							<View style={styles.inputContainer}>
+								<Ionicons
+									name='mail-outline'
+									size={24}
+								/>
+								<TextInput
+									placeholder='Email'
+									style={styles.input}
+								/>
+							</View>
+							<TouchableOpacity
+								style={styles.continueButton}
+								onPress={() => router.replace('/login/create-account-password')}
+							>
+								<Text style={styles.buttonText}>Continue</Text>
+							</TouchableOpacity>
+						</View>
+						<DynamicText style={styles.textSmall}>or</DynamicText>
+						<View style={styles.card}>
+							<TouchableOpacity style={styles.brandButton}>
+								<Ionicons
+									name='logo-google'
+									size={24}
+									color='black'
+									style={styles.icon}
+								/>
+								<Text style={styles.buttonTextBrand}>Continue with Google</Text>
+							</TouchableOpacity>
+						</View>
+					</View>
+
+					<TouchableOpacity
+						style={styles.textContainer}
+						onPress={() => router.replace('/login/signin')}
+					>
+						<DynamicText style={styles.textHaveAccount}>Already have an account? </DynamicText>
+						<DynamicText style={styles.textSignIn}>Sign in</DynamicText>
+					</TouchableOpacity>
+				</ScrollView>
+			</KeyboardAvoidingView>
+		</SafeAreaView>
 	);
 }
 

@@ -1,4 +1,13 @@
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import {
+	View,
+	Text,
+	TouchableOpacity,
+	TextInput,
+	StyleSheet,
+	SafeAreaView,
+	KeyboardAvoidingView,
+	ScrollView,
+} from 'react-native';
 import React, { useState } from 'react';
 import { Text as DynamicText } from 'expo-dynamic-fonts';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,87 +23,92 @@ export default function Signin() {
 	};
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.containerBackButton}>
-				<TouchableOpacity style={styles.backButton}>
-					<Ionicons
-						name='chevron-back-outline'
-						size={24}
-						color={Colours.PRIMARY_DARK}
-					/>
-				</TouchableOpacity>
-			</View>
-			<View style={styles.innerSection}>
-				<View style={styles.headerContainer}>
-					<DynamicText style={styles.headerText}>Sign in</DynamicText>
-					<DynamicText style={styles.subHeaderText}>Fill in information below to enter your account.</DynamicText>
-				</View>
-
-				<View style={styles.card}>
-					<View style={styles.inputContainer}>
-						<Ionicons
-							name='mail-outline'
-							size={24}
-						/>
-						<TextInput
-							placeholder='Email'
-							style={styles.input}
-						/>
-					</View>
-					<View style={styles.inputContainer}>
-						<Ionicons
-							name='lock-closed-outline'
-							size={24}
-						/>
-						<TextInput
-							placeholder='Password'
-							style={styles.input}
-							secureTextEntry={!showPassword}
-						/>
-						<TouchableOpacity onPress={toggleShowPassword}>
-							{showPassword ? (
-								<Ionicons
-									name='eye-outline'
-									size={24}
-								/>
-							) : (
-								<Ionicons
-									name='eye-off-outline'
-									size={24}
-									color='black'
-								/>
-							)}
+		<SafeAreaView style={styles.container}>
+			<KeyboardAvoidingView style={{ flex: 1 }}>
+				<ScrollView>
+					<View style={styles.containerBackButton}>
+						<TouchableOpacity style={styles.backButton}>
+							<Ionicons
+								name='chevron-back-outline'
+								size={24}
+								color={Colours.PRIMARY_DARK}
+							/>
 						</TouchableOpacity>
 					</View>
-					<TouchableOpacity
-						style={styles.signinButton}
-						onPress={() => {}}
-					>
-						<Text style={styles.buttonText}>Sign in</Text>
-					</TouchableOpacity>
-				</View>
-				<DynamicText style={styles.textSmall}>or</DynamicText>
-				<View style={styles.card}>
-					<TouchableOpacity style={styles.brandButton}>
-						<Ionicons
-							name='logo-google'
-							size={24}
-							color='black'
-							style={styles.icon}
-						/>
-						<Text style={styles.buttonTextBrand}>Continue with Google</Text>
-					</TouchableOpacity>
-				</View>
-			</View>
+					<View style={styles.innerSection}>
+						<View style={styles.headerContainer}>
+							<DynamicText style={styles.headerText}>Sign in</DynamicText>
+							<DynamicText style={styles.subHeaderText}>
+								Fill in information below to enter your account.
+							</DynamicText>
+						</View>
 
-			<TouchableOpacity
-				style={styles.textContainer}
-				onPress={() => router.replace('/login/create-account')}
-			>
-				<DynamicText style={styles.textHaveAccount}>Not registered yet? </DynamicText>
-				<DynamicText style={styles.textSignIn}>Create an account</DynamicText>
-			</TouchableOpacity>
-		</View>
+						<View style={styles.card}>
+							<View style={styles.inputContainer}>
+								<Ionicons
+									name='mail-outline'
+									size={24}
+								/>
+								<TextInput
+									placeholder='Email'
+									style={styles.input}
+								/>
+							</View>
+							<View style={styles.inputContainer}>
+								<Ionicons
+									name='lock-closed-outline'
+									size={24}
+								/>
+								<TextInput
+									placeholder='Password'
+									style={styles.input}
+									secureTextEntry={!showPassword}
+								/>
+								<TouchableOpacity onPress={toggleShowPassword}>
+									{showPassword ? (
+										<Ionicons
+											name='eye-outline'
+											size={24}
+										/>
+									) : (
+										<Ionicons
+											name='eye-off-outline'
+											size={24}
+											color='black'
+										/>
+									)}
+								</TouchableOpacity>
+							</View>
+							<TouchableOpacity
+								style={styles.signinButton}
+								onPress={() => {}}
+							>
+								<Text style={styles.buttonText}>Sign in</Text>
+							</TouchableOpacity>
+						</View>
+						<DynamicText style={styles.textSmall}>or</DynamicText>
+						<View style={styles.card}>
+							<TouchableOpacity style={styles.brandButton}>
+								<Ionicons
+									name='logo-google'
+									size={24}
+									color='black'
+									style={styles.icon}
+								/>
+								<Text style={styles.buttonTextBrand}>Continue with Google</Text>
+							</TouchableOpacity>
+						</View>
+					</View>
+					<TouchableOpacity
+						style={styles.textContainer}
+						onPress={() => router.replace('/login/create-account')}
+					>
+						<DynamicText style={styles.textHaveAccount}>Not registered yet? </DynamicText>
+						<DynamicText style={styles.textSignIn}>Create an account</DynamicText>
+					</TouchableOpacity>
+				</ScrollView>
+			</KeyboardAvoidingView>
+		</SafeAreaView>
 	);
 }
 
